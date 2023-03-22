@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Calculate";
+}
+
+@model WebApplication4.Models.CalculatorModel
+
+
+@using (Html.BeginForm("Calculate", "Calculator", FormMethod.Post))
+{
+    <p>
+        @Html.LabelFor(m => m.FirstNumber)
+        @Html.TextBoxFor(x => x.FirstNumber)
+    </p>
+    <p>
+        @Html.LabelFor(m => m.SecondNumber)
+        @Html.TextBoxFor(m => m.SecondNumber)
+    </p>
+    <p>
+        @Html.LabelFor(m => m.Operation)
+        @Html.DropDownListFor(m => m.Operation, new SelectList(new[]
+        {
+            "+",
+            "-",
+            "*",
+            "/"
+        }))
+    </p>
+    <p>
+        <button type="submit" name="action" value="calculate">Calculate</button>
+        <button type="submit" name="action" value="clearr">Clear</button>
+    </p>
+}
+
+@if (Model != null)
+{
+    <p>
+        @Model.Result
+    </p>
+
+    <p>
+        @ViewBag.Message
+    </p>
+}
+
+
